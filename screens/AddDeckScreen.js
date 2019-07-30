@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { 
   StyleSheet,
   Text,
   View, 
 } from 'react-native';
 
-export default function AddDeckScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Add Deck Screen</Text>
-    </View>
-  );
+export default class AddDeckScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Add Deck Screen</Text>
+      </View>
+    )
+  }
+
 }
 
 AddDeckScreen.navigationOptions = {
