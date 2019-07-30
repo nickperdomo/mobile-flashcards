@@ -5,10 +5,16 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
+  // Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  Card,
+  CardItem,
+  Body,
+  Text 
+} from 'native-base';
 import { getAllDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 import { connect } from 'react-redux'
@@ -23,11 +29,22 @@ class DecksScreen extends Component {
       .then( decks => dispatch(receiveDecks(decks)) )
   }
 
-  renderDeck = ({item}) => (
-    <View key={item.id}>
-      <Text>{'Decks: ' + item.title}</Text>
-    </View>
-  )
+  renderDeck = ({item}) => {
+    const questionCount = item.questions.length
+
+    return (
+      <Card key={item.id}>
+        <CardItem header style={{justifyContent: 'center'}}>
+          <Text style={{textAlign: 'center'}}>{item.title}</Text>
+        </CardItem>
+        <CardItem>
+          <Body style={{alignItems: 'stretch'}}>
+            <Text style={{textAlign: 'center'}}>{questionCount} {questionCount !== 1  ? 'cards' : 'card'}</Text>
+          </Body>
+        </CardItem>
+      </Card>
+    )
+  }
 
   render() {
     const { decks } = this.props
