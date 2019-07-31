@@ -4,14 +4,18 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import DecksScreen from '../screens/DecksScreen';
+import DeckDetailScreen from '../screens/DeckDetailScreen';
 import AddDeckScreen from '../screens/AddDeckScreen';
 
 
 const DeckStack = createStackNavigator(
   {
     Decks: DecksScreen,
+    DeckDetail: DeckDetailScreen,
   },
-  // config
+  {
+    initialRouteName: "Decks"
+  }
 );
 
 DeckStack.navigationOptions = {

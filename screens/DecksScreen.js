@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Dimensions,
   FlatList,
   Image,
   Platform,
@@ -9,42 +10,36 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  Card,
-  CardItem,
-  Body,
-  Text 
-} from 'native-base';
 import { getAllDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 import { connect } from 'react-redux'
+import DeckCoverCard from '../components/DeckCoverCard'
+
+const deviceWidth = Dimensions.get('window').width
 
 class DecksScreen extends Component {
+  static navigationOptions = {
+    header: null,
+    title: 'Decks',
+  }
+
   state = {}
 
   componentDidMount() {
     const { dispatch } = this.props
-    
     getAllDecks()
       .then( decks => dispatch(receiveDecks(decks)) )
   }
 
-  renderDeck = ({item}) => {
-    const questionCount = item.questions.length
-
-    return (
-      <Card key={item.id}>
-        <CardItem header style={{justifyContent: 'center'}}>
-          <Text style={{textAlign: 'center'}}>{item.title}</Text>
-        </CardItem>
-        <CardItem>
-          <Body style={{alignItems: 'stretch'}}>
-            <Text style={{textAlign: 'center'}}>{questionCount} {questionCount !== 1  ? 'cards' : 'card'}</Text>
-          </Body>
-        </CardItem>
-      </Card>
-    )
-  }
+  renderDeck = ({item}) => (
+    <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckDetail')}>
+      <DeckCoverCard
+        key={item.id}
+        title={item.title}
+        questionCount={item.questions.length}
+      />
+    </TouchableOpacity>  
+  )
 
   render() {
     const { decks } = this.props
@@ -70,10 +65,6 @@ class DecksScreen extends Component {
   }
 }
 
-DecksScreen.navigationOptions = {
-  header: null,
-};
-
 
 const styles = StyleSheet.create({
   container: {
@@ -82,6 +73,8 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
+    paddingLeft: deviceWidth * .05,
+    paddingRight: deviceWidth * .05,
   },
   tabBarInfoContainer: {
     position: 'absolute',
