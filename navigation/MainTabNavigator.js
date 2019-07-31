@@ -39,7 +39,7 @@ const AddDeckStack = createStackNavigator(
 AddDeckStack.navigationOptions = {
   tabBarLabel: 'Add Deck',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-add-circle' : 'add-circle'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-add-circle' : 'md-add-circle'} />
   ),
 };
 AddDeckStack.path = '';
