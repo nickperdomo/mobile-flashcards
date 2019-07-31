@@ -1,6 +1,5 @@
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
-import { Container, Text } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
