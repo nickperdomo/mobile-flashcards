@@ -6,12 +6,14 @@ import TabBarIcon from '../components/TabBarIcon';
 import DecksScreen from '../screens/DecksScreen';
 import DeckDetailScreen from '../screens/DeckDetailScreen';
 import AddDeckScreen from '../screens/AddDeckScreen';
+import QuizScreen from '../screens/QuizScreen';
 
 
 const DeckStack = createStackNavigator(
   {
     Decks: DecksScreen,
     DeckDetail: DeckDetailScreen,
+    Quiz: QuizScreen,
   },
   {
     initialRouteName: "Decks"

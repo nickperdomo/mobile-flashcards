@@ -12,20 +12,12 @@ import {
 import DeckCoverCard from '../components/DeckCoverCard'
 import globalStyles from '../styles/global'
 
-export default class DeckDetailScreen extends Component {
+export default class QuizScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('cardTitle', 'Deck'),
+      title: `${navigation.getParam('deckTitle', 'Quiz')} Quiz`,
+      
     }
-  }
-  
-  handleStart = () => {
-    const { deckTitle } = this.props.navigation.state.params
-
-    this.props.navigation.navigate(
-      'Quiz',
-      { deckTitle }
-    )
   }
 
   render() {
@@ -42,7 +34,7 @@ export default class DeckDetailScreen extends Component {
             <Text>Add Card</Text>
           </Button>
         </View>  
-        <Button onPress={this.handleStart} success full style={{justifyContent: 'center'}}>
+        <Button success full style={{justifyContent: 'center'}}>
             <Text>Start Quiz</Text>
         </Button>
       </Container>
