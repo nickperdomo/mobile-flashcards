@@ -26,6 +26,10 @@ class QuizScreen extends Component {
   
   state = {
     deck: null,
+    currentCard: null,
+    currentQuestion: null,
+    currentAnswer: null,
+    currentSide: 'front',
   }
 
   componentDidMount() {
@@ -37,21 +41,33 @@ class QuizScreen extends Component {
         // dispatch(receiveDeck(deckTitle, deck))
         this.setState(() => ({
           deck,
+          currentCard: deck.questions[0],
+          currentQuestion: deck.questions[0].question,
+          currentAnswer: deck.questions[0].answer,
         }))
       })
   }
 
+  toggleSide = () => {
+    const { currentSide } = this.state
+    this.setState(()=> ({
+      currentSide: currentSide === 'front' ? 'back' : 'front'
+    })) 
+  }
+
   render() {
     const { deckTitle, questionCount } = this.props.navigation.state.params
+    const { currentQuestion, currentAnswer, currentSide } = this.state
 
     return (
       <Container style={[globalStyles.Container]}>
         <View style={[globalStyles.contentContainer, {flex: 1, justifyContent: 'center'}]}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.toggleSide}>
             <DeckCoverCard
               mode='quiz'
-              title={deckTitle}
-              questionCount={questionCount}
+              question={currentQuestion}
+              answer={currentAnswer}
+              side={currentSide}
             />
           </TouchableOpacity> 
           <Button success rounded style={[styles.markBtn, {marginTop: 50}]}>

@@ -1,4 +1,7 @@
 import React from 'react'
+import { 
+  StyleSheet,
+} from 'react-native';
 import {
   Card,
   CardItem,
@@ -19,9 +22,9 @@ export default DeckCoverCard = (props) => {
     } = props
 
     return (
-      <Card style={{maxWidth: deviceWidth * .9, minHeight: 180, justifyContent: 'center'}}>
+      <Card style={styles.card}>
         <CardItem header style={{justifyContent: 'center', paddingBottom: 10}}>
-          <Text style={{fontSize: 28,textAlign: 'center'}}>{title}</Text>
+          <Text style={{fontSize: 28, textAlign: 'center'}}>{title}</Text>
         </CardItem>
         <CardItem style={{paddingTop: 0}}>
           <Body style={{alignItems: 'center'}}>
@@ -34,21 +37,28 @@ export default DeckCoverCard = (props) => {
 
   if (mode === 'quiz'){
     const {
-      title,
-      questionCount,
+      question,
+      answer,
+      side,
     } = props
-    
+
     return (
-      <Card style={{maxWidth: deviceWidth * .9, minHeight: 180, justifyContent: 'center'}}>
-        <CardItem header style={{justifyContent: 'center', paddingBottom: 10}}>
-          <Text style={{fontSize: 28,textAlign: 'center'}}>{title}</Text>
+      <Card style={[styles.card]}>
+        <CardItem header style={{justifyContent: 'center', paddingBottom: 0}}>
+          <Text style={{fontSize: 20, textAlign: 'center'}}>{side === 'front' ? question : answer}</Text>
         </CardItem>
-        <CardItem style={{paddingTop: 0}}>
-          <Body style={{alignItems: 'center'}}>
-            <Text style={{color: '#bbb', textAlign: 'center'}}>See Answer</Text>
-          </Body>
+        <CardItem footer style={{alignSelf: 'center'}}>
+          <Text style={{color: '#bbb', fontSize: 12, textAlign: 'center'}}>See {side === 'front' ? 'Answer' : 'Question'}</Text>
         </CardItem>
       </Card>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  card: {
+    maxWidth: deviceWidth * .9,
+    minHeight: 180,
+    justifyContent: 'center'
+  },
+});
