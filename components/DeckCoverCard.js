@@ -1,15 +1,13 @@
 import React from 'react'
 import {
-  Dimensions,
-} from 'react-native'
-import {
   Card,
   CardItem,
   Body,
   Text 
 } from 'native-base'
+import Layout from '../constants/Layout'
 
-const deviceWidth = Dimensions.get('window').width
+const deviceWidth = Layout.window.width
 
 export default DeckCoverCard = (props) => {
   const {

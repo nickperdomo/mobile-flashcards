@@ -10,12 +10,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  Container,
+  Content,
+} from 'native-base'
+import Layout from '../constants/Layout'
+import globalStyles from '../styles/global'
 import { getAllDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 import { connect } from 'react-redux'
 import DeckCoverCard from '../components/DeckCoverCard'
 
-const deviceWidth = Dimensions.get('window').width
+const deviceWidth = Layout.window.width
 
 class DecksScreen extends Component {
   static navigationOptions = {
@@ -32,7 +38,13 @@ class DecksScreen extends Component {
   }
 
   renderDeck = ({item}) => (
-    <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckDetail')}>
+    <TouchableOpacity onPress={() => this.props.navigation.navigate(
+      'DeckDetail',
+      {
+        deckTitle: item.title,
+        questionCount:  item.questions.length
+      }
+      )}>
       <DeckCoverCard
         key={item.id}
         title={item.title}
@@ -53,56 +65,19 @@ class DecksScreen extends Component {
     })
 
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={decksList}
-          renderItem={this.renderDeck}
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        />
-      </View>
+      <Container>
+        <Content>
+          <FlatList
+            data={decksList}
+            renderItem={this.renderDeck}
+            style={globalStyles.container}
+            contentContainerStyle={globalStyles.contentContainer}
+          />
+        </Content>
+      </Container>
     )
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    paddingTop: 30,
-    paddingLeft: deviceWidth * .05,
-    paddingRight: deviceWidth * .05,
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-
-});
 
 function mapStateToProps (decks) {
   return {
