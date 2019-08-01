@@ -35,6 +35,7 @@ export default class DeckDetailScreen extends Component {
       <Container style={[globalStyles.Container]}>
         <View style={[globalStyles.contentContainer, {flex: 1, justifyContent: 'center'}]}>
           <DeckCoverCard
+            mode='cover'
             title={deckTitle}
             questionCount={questionCount}
           />

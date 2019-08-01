@@ -46,6 +46,7 @@ class DecksScreen extends Component {
       }
       )}>
       <DeckCoverCard
+        mode='cover'
         key={item.id}
         title={item.title}
         questionCount={item.questions.length}
