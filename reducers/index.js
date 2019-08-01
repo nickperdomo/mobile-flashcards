@@ -1,6 +1,6 @@
 import { 
   RECEIVE_DECKS,
-  GET_DECK, 
+  RECEIVE_DECK, 
   ADD_DECK,
   ADD_CARD,
 } from '../actions'
@@ -11,8 +11,9 @@ function decks(state = {}, action) {
       return {
         ...action.decks
       }
-    case GET_DECK :
+    case RECEIVE_DECK :
       return {
+        ...state,
         [action.id]: action.deck
       }
     case ADD_DECK :
