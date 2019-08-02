@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import {
   Container,
-  Content,
   Button,
   Text 
 } from 'native-base'
@@ -29,7 +28,6 @@ class QuizScreen extends Component {
     currentIndex: 0,
     currentSide: 'front',
     correct: 0,
-    incorrect: 0,
   }
 
   componentDidMount() {
@@ -45,38 +43,55 @@ class QuizScreen extends Component {
       })
   }
 
-  toggleSide = () => {
-    const { currentSide } = this.state
-    this.setState(()=> ({
-      currentSide: currentSide === 'front' ? 'back' : 'front'
-    })) 
-  }
-
   goToNextCard = () => {
-    const { deck, currentIndex } = this.state
+    const { 
+      deck,
+      currentIndex,
+      correct,
+    } = this.state
     const cardCount = deck.questions.length
 
     if(currentIndex < cardCount - 1) {
-      this.setState(()=> ({
-        currentIndex: currentIndex + 1
+      this.setState((prevState)=> ({
+        currentIndex: prevState.currentIndex + 1
       }))
+    } else if(currentIndex === cardCount - 1) {
+      this.props.navigation.navigate(
+        'QuizResults',
+        {
+          deckTitle: deck.title,
+          questionCount: cardCount,
+          correctPct: `${correct / cardCount * 100}%`
+        }
+      )
+      this.resetQuiz()
     } 
+  }
+  
+  resetQuiz = () => {
+    this.setState(()=> ({
+      currentIndex: 0,
+      currentSide: 'front',
+      correct: 0,
+    }))
   }
 
   markCorrect = () => {
-    const { correct } = this.state
-    this.setState(()=> ({
-      correct: correct + 1
+    this.setState((prevState)=> ({
+      correct: prevState.correct + 1
     }))
     this.goToNextCard()
   }
 
   markIncorrect = () => {
-    const { incorrect } = this.state
-    this.setState(()=> ({
-      incorrect: incorrect + 1
-    }))
     this.goToNextCard()
+  }
+
+  toggleSide = () => {
+    const { currentSide } = this.state
+    this.setState(()=> ({
+      currentSide: currentSide === 'front' ? 'back' : 'front'
+    })) 
   }
 
   render() {
