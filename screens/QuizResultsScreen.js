@@ -49,7 +49,7 @@ export default class QuizResultsScreen extends Component {
     const { correctPct } = this.props.navigation.state.params
 
     return (
-      <Container style={[globalStyles.Container]}>
+      <Container style={[globalStyles.container]}>
         <View style={[globalStyles.contentContainer, {flex: 1, justifyContent: 'center'}]}>
           <Text style={{marginBottom: -20, fontSize: 112, textAlign: 'center'}}>{correctPct}</Text>
           <Text style={{fontSize: 56, textAlign: 'center', textTransform: 'uppercase'}}>correct</Text>

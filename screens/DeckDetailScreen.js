@@ -32,7 +32,7 @@ export default class DeckDetailScreen extends Component {
     const { deckTitle, questionCount } = this.props.navigation.state.params
 
     return (
-      <Container style={[globalStyles.Container]}>
+      <Container style={[globalStyles.container]}>
         <View style={[globalStyles.contentContainer, {flex: 1, justifyContent: 'center'}]}>
           <DeckCoverCard
             mode='cover'

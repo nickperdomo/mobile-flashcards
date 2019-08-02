@@ -107,7 +107,7 @@ class QuizScreen extends Component {
       const cardCount = deck.questions.length
 
       return (
-        <Container style={[globalStyles.Container]}>
+        <Container style={[globalStyles.container]}>
           <View style={[globalStyles.contentContainer, {flex: 1, justifyContent: 'center'}]}>
             <TouchableOpacity onPress={this.toggleSide}>
               <DeckCoverCard
