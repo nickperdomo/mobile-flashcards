@@ -10,6 +10,7 @@ import {
   Text 
 } from 'native-base'
 import DeckCoverCard from '../components/DeckCoverCard'
+import { getDeck } from '../utils/api'
 import globalStyles from '../styles/global'
 
 export default class DeckDetailScreen extends Component {
@@ -19,12 +20,41 @@ export default class DeckDetailScreen extends Component {
     }
   }
   
+  state = {
+    deck: null,
+    id: '',
+  }
+
+  componentDidMount() {
+    const { deckTitle } = this.props.navigation.state.params
+    getDeck(deckTitle)
+      .then( deck => {
+        this.setState(() => ({
+          deck: deck,
+          id: deck.title,
+        }))
+      })
+  }
+
   handleStart = () => {
     const { deckTitle } = this.props.navigation.state.params
 
     this.props.navigation.navigate(
       'Quiz',
       { deckTitle }
+    )
+  }
+
+  handleAddCard = () => {
+    // const { deckTitle } = this.props.navigation.state.params
+    const { deck, id } = this.state
+
+    this.props.navigation.navigate(
+      'AddCard',
+      { 
+        deckTitle: id,
+        deck,
+      }
     )
   }
 
@@ -43,7 +73,11 @@ export default class DeckDetailScreen extends Component {
             title={deckTitle}
             questionCount={questionCount}
           />
-          <Button light rounded style={{alignSelf: 'center', marginTop: 15}}>
+          <Button 
+            onPress={this.handleAddCard}
+            light
+            rounded
+            style={{alignSelf: 'center', marginTop: 15}}>
             <Text>Add Card</Text>
           </Button>
         </View>  

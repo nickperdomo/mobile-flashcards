@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import DecksScreen from '../screens/DecksScreen';
 import DeckDetailScreen from '../screens/DeckDetailScreen';
 import AddDeckScreen from '../screens/AddDeckScreen';
+import AddCardScreen from '../screens/AddCardScreen';
 import QuizScreen from '../screens/QuizScreen';
 import QuizResultsScreen from '../screens/QuizResultsScreen';
 
@@ -16,6 +17,7 @@ const DeckStack = createStackNavigator(
     DeckDetail: DeckDetailScreen,
     Quiz: QuizScreen,
     QuizResults: QuizResultsScreen,
+    AddCard: AddCardScreen,
   },
   {
     initialRouteName: "Decks"
@@ -52,6 +54,8 @@ AddDeckStack.path = '';
 const tabNavigator = createBottomTabNavigator({
   DeckStack,
   AddDeckStack,
+}, {
+  initialRouteName: 'DeckStack'
 });
 tabNavigator.path = '';
 

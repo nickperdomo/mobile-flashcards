@@ -67,7 +67,7 @@ class AddDeckScreen extends Component {
       <View style={globalStyles.container}>
         <Content>
           <Form>
-            <Item floatingLabel>
+            <Item stackedLabel>
               <Label style={{top:0}}>Deck Title</Label>
               <Input
                 onChangeText={this.handleChangeText}

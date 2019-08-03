@@ -67,7 +67,7 @@ export function addCardToDeck (id, card) {
   try {
     return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
       [formattedTitle]: {
-        questions: [card]
+        questions: card
       }
     }))
 
