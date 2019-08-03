@@ -21,7 +21,7 @@ function decks(state = {}, action) {
         ...state,
         [action.title]: {
           title: action.title,
-          cards: []
+          questions: []
         }
       }
     case ADD_CARD :

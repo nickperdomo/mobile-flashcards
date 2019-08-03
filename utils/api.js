@@ -51,7 +51,7 @@ export function saveDeckTitle (title) {
   }
 
   try {
-    return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify({
+    return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
       [formattedTitle]: emptyDeck
     }))
     
