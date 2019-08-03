@@ -63,7 +63,7 @@ class DecksScreen extends Component {
         title: decks[deckId].title,
         questions: decks[deckId].questions,
       }
-    })
+    }).sort((a,b) => (a.title > b.title) ? 1 : -1)
 
     return (
       <Container>
