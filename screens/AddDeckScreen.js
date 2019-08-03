@@ -50,7 +50,16 @@ class AddDeckScreen extends Component {
             questionCount: 0
           }
         )
+        this.clearInput()
       })
+  }
+
+  clearInput = () => {
+    this.setState(() => ({
+      deckTitle: '',
+      disabled: true,
+    }))
+
   }
 
   render() {
@@ -60,7 +69,12 @@ class AddDeckScreen extends Component {
           <Form>
             <Item floatingLabel>
               <Label style={{top:0}}>Deck Title</Label>
-              <Input onChangeText={this.handleChangeText}/>
+              <Input
+                onChangeText={this.handleChangeText}
+                value={this.state.deckTitle}
+                blurOnSubmit
+                returnKeyType='done'
+              />
             </Item>
           </Form>
           <Button onPress={this.handleSubmit} disabled={this.state.disabled} rounded style={{alignSelf: 'center', marginTop: 45}}>
