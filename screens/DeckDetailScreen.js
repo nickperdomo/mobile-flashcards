@@ -30,6 +30,10 @@ export default class DeckDetailScreen extends Component {
 
   render() {
     const { deckTitle, questionCount } = this.props.navigation.state.params
+    let btnProps
+    questionCount > 0
+      ? btnProps = {success: true, disabled: false}
+      : btnProps = {success: false, disabled: true}
 
     return (
       <Container style={[globalStyles.container]}>
@@ -43,8 +47,13 @@ export default class DeckDetailScreen extends Component {
             <Text>Add Card</Text>
           </Button>
         </View>  
-        <Button onPress={this.handleStart} success full style={{justifyContent: 'center'}}>
-            <Text>Start Quiz</Text>
+        <Button
+          onPress={this.handleStart}
+          full
+          style={{justifyContent: 'center'}}
+          {...btnProps}
+          >
+          <Text>Start Quiz</Text>
         </Button>
       </Container>
     )
