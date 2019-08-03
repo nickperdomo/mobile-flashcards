@@ -58,7 +58,7 @@ export default class QuizResultsScreen extends Component {
           </Button>
         </View>  
         <Button onPress={this.handleRestart} success full style={{justifyContent: 'center'}}>
-            <Text>Restart Quiz</Text>
+          <Text>Restart Quiz</Text>
         </Button>
       </Container>
     )

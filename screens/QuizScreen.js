@@ -61,7 +61,7 @@ class QuizScreen extends Component {
         {
           deckTitle: deck.title,
           questionCount: cardCount,
-          correctPct: `${correct / cardCount * 100}%`
+          correctPct: `${(correct / cardCount * 100).toFixed()}%`
         }
       )
       this.resetQuiz()
