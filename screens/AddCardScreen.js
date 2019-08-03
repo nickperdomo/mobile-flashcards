@@ -53,21 +53,19 @@ class AddCardScreen extends Component {
       question: questionText,
       answer: answerText,
     }
-    const backAction = NavigationActions.back()
 
     deck.questions.push(card)
     addCardToDeck(deckTitle, deck.questions)
       .then( () => {
         // console.log('results:', results)
         dispatch(addCard(deckTitle, card))
-      //   // this.props.navigation.navigate(
-      //   //   'DeckDetail',
-      //   //   {
-      //   //     deckTitle: deckTitle,
-      //   //     questionCount: 0
-      //   //   }
-      //   // )
-        this.props.navigation.dispatch(backAction)
+        this.props.navigation.navigate(
+          'DeckDetail',
+          {
+            deckTitle: deckTitle,
+            questionCount: deck.questions.length
+          }
+        )
         this.clearInput()
       })
   }

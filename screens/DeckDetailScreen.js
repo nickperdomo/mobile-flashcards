@@ -46,7 +46,6 @@ export default class DeckDetailScreen extends Component {
   }
 
   handleAddCard = () => {
-    // const { deckTitle } = this.props.navigation.state.params
     const { deck, id } = this.state
 
     this.props.navigation.navigate(
