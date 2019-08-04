@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import {
-  Dimensions,
   FlatList,
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  // Text,
   TouchableOpacity,
-  View,
 } from 'react-native';
 import {
   Container,
@@ -20,8 +13,6 @@ import { getAllDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 import { connect } from 'react-redux'
 import DeckCoverCard from '../components/DeckCoverCard'
-
-const deviceWidth = Layout.window.width
 
 class DecksScreen extends Component {
   static navigationOptions = {

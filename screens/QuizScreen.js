@@ -12,7 +12,6 @@ import {
 } from 'native-base'
 import DeckCoverCard from '../components/DeckCoverCard'
 import { getDeck } from '../utils/api'
-import { receiveDeck } from '../actions'
 import globalStyles from '../styles/global'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
@@ -37,7 +36,6 @@ class QuizScreen extends Component {
 
     getDeck(deckTitle)
       .then( deck => {
-        // dispatch(receiveDeck(deckTitle, deck))
         this.setState(() => ({
           deck,
         }))

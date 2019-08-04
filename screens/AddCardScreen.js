@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  // StyleSheet,
   View, 
 } from 'react-native';
 import {
@@ -16,7 +15,6 @@ import globalStyles from '../styles/global'
 import { addCardToDeck } from '../utils/api'
 import { addCard } from '../actions'
 import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation';
 
 class AddCardScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -57,7 +55,6 @@ class AddCardScreen extends Component {
     deck.questions.push(card)
     addCardToDeck(deckTitle, deck.questions)
       .then( () => {
-        // console.log('results:', results)
         dispatch(addCard(deckTitle, card))
         this.props.navigation.navigate(
           'DeckDetail',

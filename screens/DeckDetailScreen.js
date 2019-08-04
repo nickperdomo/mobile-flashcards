@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { 
-  StyleSheet,
   View, 
 } from 'react-native';
 import {
   Container,
-  Content,
   Button,
   Text 
 } from 'native-base'

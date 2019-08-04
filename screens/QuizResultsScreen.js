@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { 
-  StyleSheet,
   View, 
 } from 'react-native';
 import {
   Container,
-  Content,
   Button,
   Text 
 } from 'native-base'
-import DeckCoverCard from '../components/DeckCoverCard'
 import globalStyles from '../styles/global'
 
 export default class QuizResultsScreen extends Component {

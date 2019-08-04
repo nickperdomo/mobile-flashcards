@@ -39,7 +39,6 @@ const AddDeckStack = createStackNavigator(
   {
     AddDeck: AddDeckScreen,
   },
-  // config
 );
 
 AddDeckStack.navigationOptions = {
