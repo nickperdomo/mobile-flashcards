@@ -30,7 +30,16 @@ export default function App(props) {
     return (
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <StatusBar barStyle="default" />
+          {Platform.OS === 'android'
+            ? <View
+              style={{
+                height: 24,
+                backgroundColor: "#2096f3",
+              }}
+            />
+            : null
+          }
           <AppNavigator />
         </View>
       </Provider>
