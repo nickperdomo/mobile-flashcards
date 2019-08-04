@@ -14,6 +14,7 @@ import DeckCoverCard from '../components/DeckCoverCard'
 import { getDeck } from '../utils/api'
 import { receiveDeck } from '../actions'
 import globalStyles from '../styles/global'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class QuizScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -65,6 +66,9 @@ class QuizScreen extends Component {
         }
       )
       this.resetQuiz()
+      
+      clearLocalNotification()
+        .then(setLocalNotification())
     } 
   }
   

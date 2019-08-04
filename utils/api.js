@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import starterDecks from './starterDecks'
 
-const STORAGE_KEY = 'udaciMobileFlashCards'
+const STORAGE_KEY = 'udaciMobileFlashCards:decks'
 const DEBUG_MODE = false
 
 

@@ -2,7 +2,7 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Platform,
   StatusBar,
@@ -12,11 +12,16 @@ import {
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
+import { setLocalNotification } from './utils/helpers'
 
 import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+
+  useEffect(() => {
+    setLocalNotification()
+  }, [])
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
